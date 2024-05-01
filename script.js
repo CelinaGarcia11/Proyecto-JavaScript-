@@ -1,4 +1,4 @@
-// CONDICIONAL
+
 let arrayDeudores = crearArrayDeudores(10)
 let opcion = prompt("Si desea cotizar su vehiculo con nosotros ingrese 1 y si desea consultar si posee deuda ingrese 2")
 if (opcion === "1") {
@@ -98,7 +98,7 @@ switch (tipo){
 
 
 
-// BUCLE 
+
 
 let precioBase = 500
 
