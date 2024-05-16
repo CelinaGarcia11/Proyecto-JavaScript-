@@ -116,6 +116,30 @@ function calcularPrecio(index, precioBase, modificador) {
     const element = index * precioBase * modificador 
 
     document.write(`El valor del seguro modelo ${index} es ${element} <br>`) 
+
 }
 
+
+let miFormulario = document.getElementById("formulario");
+miFormulario.addEventListener("submit",agregarListaAuto);
+
+function agregarListaAuto(e){
+    e.preventDefault();
+
+    const selectElement = document.getElementById("inputCorreo").value
+    const selectTelefono = document.getElementById("inputTelefono").value
+    const selectConsulta= document.getElementById("inputConsulta").value
+   
+    const objeto =  {"correo" :selectElement, "telefono":selectTelefono, "consulta":selectConsulta}
+    
+
+    const arrayMemoria = localStorage.setItem("listaDeConsultas", JSON.stringify(objeto))
+
+    
+    
+
+
+
+alert("La consulta fue enviada con exito. Le responderemos a la brevedad.")    
+}
 
