@@ -1,18 +1,9 @@
 
 let arrayDeudores = crearArrayDeudores(10)
-let opcion = prompt("Si desea cotizar su vehiculo con nosotros ingrese 1 y si desea consultar si posee deuda ingrese 2")
-if (opcion === "1") {
-    cotizadorDeSeguros();
-} else if (opcion === "2") {
-    buscadorDeDeudores(arrayDeudores)
-  
-}
-else {
-    alert("Opcion ingresada no valida")
-}
- 
-function buscadorDeDeudores(arrayDeudores) {
-    let nombreCliente = prompt("Ingrese su nombre y apellido (para motivos de testing inicie el programa con consola abierta)")
+
+function buscadorDeDeudores(e) { 
+    e.preventDefault();
+    let nombreCliente = document.getElementById("inputDeuda").value;
      let deudorEncontrado = null
      arrayDeudores.forEach((deudor) =>{
         let nombreCompuesto =`${deudor.nombre} ${deudor.apellido}`
@@ -22,9 +13,9 @@ function buscadorDeDeudores(arrayDeudores) {
     }) 
  
     if (deudorEncontrado != null) {
-        alert(`${deudorEncontrado.nombre} ${deudorEncontrado.apellido} con deuda de $${deudorEncontrado.monto} vencida el ${deudorEncontrado.fecha}`)
+        document.getElementById("texto").innerHTML = `${deudorEncontrado.nombre} ${deudorEncontrado.apellido} con deuda de $${deudorEncontrado.monto} vencida el ${deudorEncontrado.fecha}`
     } else {
-        alert("Deudor no encontrado")
+        document.getElementById("texto").innerHTML = "El tipo ingresado no es valido.";
     }
     
 }
@@ -63,51 +54,43 @@ function generarNumeroRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min
 }
 
-function cotizadorDeSeguros() {
-let tipo = prompt("Escribe que tipo de vehiculo tienes");
+function cotizadorDeSeguros(e) {
+    e.preventDefault();
+let tipo = document.getElementById("inputVehiculo").value;
 let modificador = 0;
 
 switch (tipo){
     case (tipo = "moto") || (tipo = "Moto"):
-        alert("Dirijase a la seccion Basicos");
         modificador = 0.5
         break;
 
         case (tipo = "auto") || (tipo = "Auto"):
-            alert("Dirijase a la seccion Basicos");
             modificador = 1.0
             break;
     
         case (tipo = "lancha") || (tipo = "Lancha"):
-                alert("Dirijase a la seccion Especiales");
                 modificador = 1.5
                 break;
 
-        case (tipo = "cuatriciclo") || (tipo =          "Cuatriciclo"):
-                alert("Dirijase a la seccion Especiales");
+        case (tipo = "cuatriciclo") || (tipo ="Cuatriciclo"):
                 modificador = 1.2
                 break;      
 
         
     default:
-        alert("El tipo ingresado no es valido.");
+        document.getElementById("mensaje").innerHTML = "El tipo ingresado no es valido.";
         break;         
 }
 
 
-
-
-
-
-
 let precioBase = 500
-
+let acomulador = ""
 if (modificador != 0 ) {
 for (let index = 2000; index <= 2024; index++) {
-    calcularPrecio(index, precioBase, modificador)
+    acomulador = calcularPrecio(index, precioBase, modificador) + acomulador
     
 }
-document.write(`<br> <br>`); 
+document.getElementById("mensaje").innerHTML = acomulador
 }
 
 }
@@ -115,10 +98,15 @@ document.write(`<br> <br>`);
 function calcularPrecio(index, precioBase, modificador) {
     const element = index * precioBase * modificador 
 
-    document.write(`El valor del seguro modelo ${index} es ${element} <br>`) 
+   return `El valor del seguro modelo ${index} es ${element} <br>`
 
 }
 
+let formularioCotizar = document.getElementById("formularioCotizar");
+formularioCotizar.addEventListener("submit",cotizadorDeSeguros);
+
+let formularioDeuda = document.getElementById("formularioDeuda");
+formularioDeuda.addEventListener("submit",buscadorDeDeudores);
 
 let miFormulario = document.getElementById("formulario");
 miFormulario.addEventListener("submit",agregarListaAuto);
@@ -140,6 +128,6 @@ function agregarListaAuto(e){
 
 
 
-alert("La consulta fue enviada con exito. Le responderemos a la brevedad.")    
+document.getElementById("consulta").innerHTML = "La consulta fue enviada con exito. Le responderemos a la brevedad."    
 }
 
