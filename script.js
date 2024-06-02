@@ -123,11 +123,24 @@ function agregarListaAuto(e){
 
     const arrayMemoria = localStorage.setItem("listaDeConsultas", JSON.stringify(objeto))
 
-    
-    
+    let listaDeConsultas = localStorage.getItem("listaDeConsultas");
+
+    console.log(listaDeConsultas)
+ 
 
 
 
-document.getElementById("consulta").innerHTML = "La consulta fue enviada con exito. Le responderemos a la brevedad."    
+// document.getElementById("consulta").innerHTML = "La consulta fue enviada con exito. Le responderemos a la brevedad."    
 }
+
+const btn = document.querySelector('#myButton')
+btn.addEventListener('click', () => {
+
+    Swal.fire({
+        title: 'Genial!',
+        text: 'La consulta fue enviada con éxito. Le responderemos a la brevedad!',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+})
+})
 
