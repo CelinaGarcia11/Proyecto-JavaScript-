@@ -1,0 +1,19 @@
+[
+    {
+        "nombre" : "Juan",
+        "apellido" : "Rodriguez",
+        "nivel" : "1"
+    },
+
+    {
+        "nombre" : "Camila",
+        "apellido" : "Flores",
+        "nivel" : "2"
+    },
+
+    {
+        "nombre" : "Marcos",
+        "apellido" : "Lopez",
+        "nivel" : "3"
+    }
+]

@@ -1,3 +1,6 @@
+//document.getElementById('').addEventListener('click', cargarJSON)
+
+document.getElementById("formularioCliente").addEventListener('click', cargarJSON);
 
 let arrayDeudores = crearArrayDeudores(10)
 
@@ -144,3 +147,13 @@ btn.addEventListener('click', () => {
 })
 })
 
+
+function cargarJSON() {
+    fetch('./clientes.json')
+        .then(function(res) {
+            return res.json();
+        })
+        .then(function(data) {
+            document.getElementById("mensajeCliente").innerHTML = JSON.stringify(data);
+        }) 
+}
